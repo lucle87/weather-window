@@ -1,0 +1,31 @@
+==========================================
+  SO DO CAU TRUC - DU AN weather-window
+==========================================
+
+weather-window/
+|
+|-- app/
+|   |-- api/weather-window/route.ts   <- endpoint (gate MPP 402)
+|   |-- openapi.json/route.ts         <- discovery
+|   |-- llms.txt/route.ts             <- docs agent
+|   |-- icon.svg
+|   |-- layout.tsx
+|   `-- page.tsx
+|
+|-- lib/
+|   |-- config.ts       <- MPP: token, vi nhan, gia, realm
+|   |-- http.ts         <- fetch JSON co timeout
+|   |-- activities.ts   <- nguong tung activity + danh gia gio
+|   `-- weather.ts      <- goi Open-Meteo + gom cua so tot
+|
+|-- package.json / tsconfig.json / next.config.js
+|-- .env.example / .gitignore / README.md
+
+THEM ACTIVITY MOI = them 1 entry vao ACTIVITIES trong lib/activities.ts.
+Khong dung MPP/route/openapi (openapi tu doc danh sach activity).
+
+CHAY:
+  npm install
+  copy .env.example .env   (RECIPIENT, CONTACT_EMAIL, PREVIEW_KEY)
+  npm run dev
+==========================================
