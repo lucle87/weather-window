@@ -28,6 +28,16 @@ export async function GET() {
           operationId: "weatherWindow",
           summary: "Good weather windows in the next 48h for an outdoor activity",
           tags: ["weather", "decision", "drone", "agriculture", "outdoor"],
+          "x-agent-guidance": {
+            whenToUse:
+              'Use when an agent needs the best weather windows in the next 48h for an outdoor or weather-sensitive activity at a location (scheduling, go/no-go for outdoor work, events, travel, drone flying).',
+            input:
+              "POST JSON: { activity (e.g. 'running', 'drone flying', 'picnic'), lat + lon OR place (place name), hours? (lookahead, default 48) }.",
+            output:
+              'summary plus ranked good-weather windows with start/end time and the conditions (temp, wind, precip) relevant to the activity.',
+            paymentFlow:
+              'First call returns HTTP 402 with a Tempo MPP challenge. Pay with mppx (USDC.e on Tempo), then retry the same request to get 200.',
+          },
           "x-payment-info": {
             price: { mode: "fixed", amount: PRICE, currency: "USD" },
             protocols: [{ mpp: {} }],
